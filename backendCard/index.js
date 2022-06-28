@@ -19,8 +19,10 @@ const CONNECTION_URL = 'mongodb://localhost:27017/socialCard'
 
 const PORT = process.env.PORT || 5000
 
+
+app.use('/posts', postsRoute)
+
 mongoose.connect(CONNECTION_URL)
     .then(() => app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) }))
     .catch((error) => console.log(error))
 
-app.use('/posts', postsRoute)

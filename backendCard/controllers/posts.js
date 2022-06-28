@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import PostMessage from "../models/postMessages.js"
 
 export const getPosts = async (req, res) => {
@@ -21,5 +22,15 @@ export const createPost = async (req, res) => {
         res.status(201).json(newPost)
     } catch (error) {
         res.status(200).json({ message: error.message })
+    }
+}
+
+export const deletePostId = async (req, res) => {
+    const id = req.params.id
+    try {
+        await PostMessage.deleteOne({ _id: id })
+        res.status(200).json({ message: "xoa roi nghe" })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
     }
 }
